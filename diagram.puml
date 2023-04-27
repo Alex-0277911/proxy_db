@@ -1,0 +1,24 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "proxy_db::proxy_db.dart::Database" {
+  +Future<String> readData()
+}
+
+class "proxy_db::proxy_db.dart::RemoteDatabase" {
+  +Future<String> readData()
+}
+
+"proxy_db::proxy_db.dart::Database" <|-- "proxy_db::proxy_db.dart::RemoteDatabase"
+
+class "proxy_db::proxy_db.dart::DatabaseProxy" {
+  -RemoteDatabase _remoteDatabase
+  -String _cachedData
+  +Future<String> readData()
+}
+
+"proxy_db::proxy_db.dart::DatabaseProxy" o-- "proxy_db::proxy_db.dart::RemoteDatabase"
+"proxy_db::proxy_db.dart::Database" <|-- "proxy_db::proxy_db.dart::DatabaseProxy"
+
+
+@enduml
