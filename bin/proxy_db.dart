@@ -20,7 +20,7 @@ class RemoteDatabase implements Database {
   @override
   Future<String> readData() async {
     // Симулюємо час на доступ до бази даних через мережу
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 5));
     return 'Data from remote database';
   }
 }
